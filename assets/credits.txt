@@ -1,0 +1,14 @@
+-- Assets Credits --
+
+(Not Downloaded)   TruckKun : https://sketchfab.com/3d-models/mazda-e-2200-pickup-truck-3d6fe0687b074e2bb57bd931a9621d58
+(Used)             Light Fighters : https://sketchfab.com/3d-models/ajf-12-dvergr-ecc16e103e79448faf9730f172a1d7e8
+(Used)	           Basic Fighter : https://sketchfab.com/3d-models/star-sparrow-modular-spaceship-28806b168f8043bbb5c1c922f98452c9
+(Used)	           Heavy fighters : https://sketchfab.com/3d-models/mjolnir-c8e9020d658649238ee3cfc1c1d64a68
+(Not Used)         Boss1 : https://sketchfab.com/3d-models/class-3-fighter-spaceship-hodbin-free-model-3451df5fb9d34cd98c3f63cfc0321dd3
+(Not Used)         Boss2 : https://sketchfab.com/3d-models/spaceship-781e531c00d94c9e89dcc8ad9b967d87
+(Not Used)         Boss3 : https://sketchfab.com/3d-models/aeriusu-drone-ship-1b121a8965e241ada855288eef2732ba
+
+-- Sources :
+	- @sketchfab
+	- @Open3DLab
+	- @FreePik
