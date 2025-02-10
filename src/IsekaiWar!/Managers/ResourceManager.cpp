@@ -35,9 +35,9 @@ void ResourceManager::LoadEngineResources(sf::RenderWindow& window) {
 	std::string path = "";
 
 #ifdef _DEBUG
-	path = OS::GetAbsolutePath(DEBUG_PATH) + "res/_engine/";
+	path = OS::getAbsolutePath(DEBUG_PATH) + "res/_engine/";
 #else
-	path = OS::GetExecutablePath() + "/resourcepacks/_engine/";
+	path = OS::getExecutablePath() + "/resourcepacks/_engine/";
 #endif
 
 	sf::Vector2f windowSize = window.getDefaultView().getSize();
@@ -73,14 +73,20 @@ void ResourceManager::LoadGameResources() {
 	std::string subdir = "";
 
 #ifdef _DEBUG
-	root = OS::GetAbsolutePath(DEBUG_PATH);
+	root = OS::getAbsolutePath(DEBUG_PATH);
 	subdir = "res/";
 #else
-	root = OS::GetExecutablePath();
+	root = OS::getExecutablePath();
 	subdir = "/resourcepacks/";
 #endif
 
 	std::string path = root + subdir;
+
+	if (!OS::directoryExists(path)) {
+		std::string debug_path = OS::getAbsolutePath(DEBUG_PATH) + "res/";
+		OS::createDirectory(path);
+		OS::copyDirectory(debug_path, path);
+	}
 
 	LoadTextures(path);
 	LoadSounds(path);
@@ -91,7 +97,7 @@ void ResourceManager::LoadGameResources() {
 }
 
 void ResourceManager::LoadTextures(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".png");
+	std::vector<std::string> assets = OS::getFilesInDirectory(path, ".png");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);
@@ -100,7 +106,7 @@ void ResourceManager::LoadTextures(std::string path) {
 	}
 }
 void ResourceManager::LoadSounds(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".wav");
+	std::vector<std::string> assets = OS::getFilesInDirectory(path, ".wav");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);
@@ -109,7 +115,7 @@ void ResourceManager::LoadSounds(std::string path) {
 	}
 }
 void ResourceManager::LoadMusics(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".wav");
+	std::vector<std::string> assets = OS::getFilesInDirectory(path, ".wav");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);
@@ -118,7 +124,7 @@ void ResourceManager::LoadMusics(std::string path) {
 	}
 }
 void ResourceManager::LoadFonts(std::string path) {
-	std::vector<std::string> assets = OS::GetFilesInDirectory(path, ".ttf");
+	std::vector<std::string> assets = OS::getFilesInDirectory(path, ".ttf");
 
 	for (const std::string& asset : assets) {
 		std::string name = asset.substr(asset.find_last_of("/") + 1);

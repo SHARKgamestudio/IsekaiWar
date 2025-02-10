@@ -6,58 +6,74 @@
 #include <windows.h>
 #include <iostream>
 #include <codecvt>
-#include <string>
 #include <locale>
-#include <vector>
 
 #pragma endregion
 
 namespace fs = std::filesystem;
 
-std::string OS::GetExecutablePath() {
-    wchar_t path[MAX_PATH];
-    DWORD length = GetModuleFileName(NULL, path, MAX_PATH);
+namespace OS {
+	std::string getExecutablePath() {
+		wchar_t path[MAX_PATH];
+		DWORD length = GetModuleFileName(NULL, path, MAX_PATH);
 
-    if (length == 0) {
-        return "";
-    }
+		if (length == 0) {
+			return "";
+		}
 
-    int bufferSize = WideCharToMultiByte(CP_UTF8, 0, path, -1, NULL, 0, NULL, NULL);
-    if (bufferSize == 0) {
-        return "";
-    }
+		int bufferSize = WideCharToMultiByte(CP_UTF8, 0, path, -1, NULL, 0, NULL, NULL);
+		if (bufferSize == 0) {
+			return "";
+		}
 
-    std::string result(bufferSize - 1, '\0');
-    WideCharToMultiByte(CP_UTF8, 0, path, -1, &result[0], bufferSize, NULL, NULL);
+		std::string result(bufferSize - 1, '\0');
+		WideCharToMultiByte(CP_UTF8, 0, path, -1, &result[0], bufferSize, NULL, NULL);
 
-    result = GetStandardPath(result);
+		result = getStandardPath(result);
 
-    size_t position = result.find_last_of("/");
-    if (position != std::string::npos) {
-        result = result.substr(0, position);
-    }
+		size_t position = result.find_last_of("/");
+		if (position != std::string::npos) {
+			result = result.substr(0, position);
+		}
 
-    return result;
-}
+		return result;
+	}
 
-std::string OS::GetAbsolutePath(std::string path) {
-   return fs::absolute(path).generic_string(); 
-}
+	std::string getAbsolutePath(std::string _path) {
+		return fs::absolute(_path).generic_string();
+	}
 
-std::string OS::GetStandardPath(std::string path) {
-    std::replace(path.begin(), path.end(), '\\', '/');
-    return path;
-}
+	std::string getStandardPath(std::string _path) {
+		std::replace(_path.begin(), _path.end(), '\\', '/');
+		return _path;
+	}
 
-std::vector<std::string> OS::GetFilesInDirectory(std::string path, std::string extension) {
-    std::vector<std::string> files;
-    fs::path directoryPath(path);
+	bool directoryExists(std::string _path) {
+		return fs::is_directory(_path);
+	}
 
-    for (const auto& entry : fs::recursive_directory_iterator(directoryPath, fs::directory_options::skip_permission_denied)) {
-        if (fs::is_regular_file(entry) && entry.path().extension() == extension) {
-            files.push_back(GetStandardPath(entry.path().string()));
-        }
-    }
+	bool fileExists(std::string _path) {
+		return fs::exists(_path);
+	}
 
-    return files;
+	void createDirectory(std::string _path) {
+		fs::create_directories(_path);
+	}
+
+	void copyDirectory(std::string _source, std::string _destination) {
+		fs::copy(_source, _destination, fs::copy_options::recursive);
+	}
+
+	std::vector<std::string> getFilesInDirectory(std::string _path, std::string _extension) {
+		std::vector<std::string> files;
+		fs::path directoryPath(_path);
+
+		for (const auto& entry : fs::recursive_directory_iterator(directoryPath, fs::directory_options::skip_permission_denied)) {
+			if (fs::is_regular_file(entry) && entry.path().extension() == _extension) {
+				files.push_back(getStandardPath(entry.path().string()));
+			}
+		}
+
+		return files;
+	}	
 }
