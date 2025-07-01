@@ -27,7 +27,7 @@ It’s not reflective of my current skills, so please don’t judge too harshly 
 ## 📥 Installation
 
 ### Precompiled Binaries
-If you want to the game right away, precompiled binaries are available in the release section.
+If you want the game right away, precompiled binaries are available in the release section.
 
 [Download Latest Release](https://github.com/SHARKgamestudio/IsekaiWar)
 
