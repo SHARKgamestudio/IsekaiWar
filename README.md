@@ -43,7 +43,7 @@ Now Maxine, armed with spells ✨, sarcasm, and the stubborn spirit of a data dr
 ## 📥 Installation
 
 ### Precompiled Binaries
-If you want to the game right away, precompiled binaries are available in the release section.
+If you want the game right away, precompiled binaries are available in the release section.
 
 [Download Latest Release](https://github.com/SHARKgamestudio/IsekaiWar/releases/tag/R0.16)
 
