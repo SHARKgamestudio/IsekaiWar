@@ -72,6 +72,9 @@ vcpkg integrate install
 ```
 
 That’s it! You can now compile and run the project :)
+
+⚠️ Side note: If you get errors about missing SFML DLLs, clean up the solution and build again.
+
 ## 💜 Credits
 
 Thanks to [@gto634](https://github.com/gto634) for making this project with me :)
