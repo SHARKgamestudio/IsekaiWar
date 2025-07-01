@@ -20,7 +20,7 @@ It’s not reflective of my current skills, so please don’t judge too harshly 
 - Ultimate attacks with a "mana" system
 - Multiple Power-Ups with different effects
 - 5 different enemies with unique patterns
-- 1 playable level (around 2 min of Gameplay)
+- 1 playable level (around 2 min of Gameplay)                
 ↻ More features were planned, but we spent too much time on the engine.
 ## 📥 Installation
 
